@@ -3,6 +3,15 @@
 #include <vector>
 #include <algorithm>
 #include <nlohmann/json.hpp>
+#include <future>
+#include <set>
+#include <nlohmann/json.hpp> 
+
+// nlohmann-json	
+// 3.10.4-alt1
+// 15 ноября 2021 г. 18:49	
+// Разработка/C++	https://github.com/nlohm…	
+// JSON for Modern C++ (c++11) ("single header file")
 
 using json = nlohmann::json;
 
@@ -35,35 +44,39 @@ json load_json(const std::string& filename) {
 }
 
 // Функция для выполнения сравнения пакетов из двух веток
-json compare_packages(const json& branch1, const json& branch2) {
+json compare_packages(const json& branch1, const json& branch2, const std::string& arch) {
     std::vector<Package> packages1, packages2;
 
     // Загрузка пакетов из первой ветки
     for (const auto& pkg : branch1["packages"]) {
-        Package package;
-        package.name = pkg["name"];
-        package.epoch = pkg["epoch"];
-        package.version = pkg["version"];
-        package.release = pkg["release"];
-        package.arch = pkg["arch"];
-        package.disttag = pkg["disttag"];
-        package.buildtime = pkg["buildtime"];
-        package.source = pkg["source"];
-        packages1.push_back(package);
+        if (pkg["arch"] == arch) {
+            Package package;
+            package.name = pkg["name"];
+            package.epoch = pkg["epoch"];
+            package.version = pkg["version"];
+            package.release = pkg["release"];
+            package.arch = pkg["arch"];
+            package.disttag = pkg["disttag"];
+            package.buildtime = pkg["buildtime"];
+            package.source = pkg["source"];
+            packages1.push_back(package);
+        }
     }
 
     // Загрузка пакетов из второй ветки
     for (const auto& pkg : branch2["packages"]) {
-        Package package;
-        package.name = pkg["name"];
-        package.epoch = pkg["epoch"];
-        package.version = pkg["version"];
-        package.release = pkg["release"];
-        package.arch = pkg["arch"];
-        package.disttag = pkg["disttag"];
-        package.buildtime = pkg["buildtime"];
-        package.source = pkg["source"];
-        packages2.push_back(package);
+        if (pkg["arch"] == arch) {
+            Package package;
+            package.name = pkg["name"];
+            package.epoch = pkg["epoch"];
+            package.version = pkg["version"];
+            package.release = pkg["release"];
+            package.arch = pkg["arch"];
+            package.disttag = pkg["disttag"];
+            package.buildtime = pkg["buildtime"];
+            package.source = pkg["source"];
+            packages2.push_back(package);
+        }
     }
 
     // Сравнение пакетов и формирование результата
@@ -95,6 +108,7 @@ json compare_packages(const json& branch1, const json& branch2) {
 
     // Формирование JSON с результатами
     json result;
+    result["arch"] = arch;
     result["packages_only_in_first"] = json::array();
     for (const auto& pkg : only_in_first) {
         result["packages_only_in_first"].push_back({
@@ -140,16 +154,42 @@ json compare_packages(const json& branch1, const json& branch2) {
     return result;
 }
 
+// Функция для асинхронной обработки
+json process_comparison(const json& branch1_data, const json& branch2_data, const std::string& arch) {
+    return compare_packages(branch1_data, branch2_data, arch);
+}
+
 int main() {
     try {
-        json p11_data = load_json("p11.json");
-        json p10_data = load_json("p10.json");
+        // Загрузка данных
+        json p10_data = load_json("../p10.json");
+        json sisyphus_data = load_json("../sisyphus.json");
 
-        json comparison_result = compare_packages(p11_data, p10_data);
+        // Получение списка уникальных архитектур
+        std::set<std::string> architectures;
+        for (const auto& pkg : p10_data["packages"]) {
+            architectures.insert(pkg["arch"]);
+        }
+        for (const auto& pkg : sisyphus_data["packages"]) {
+            architectures.insert(pkg["arch"]);
+        }
 
-        std::ofstream file("comparison_result.json");
-        file << std::setw(4) << comparison_result << std::endl;
-        std::cout << "Comparison result saved to comparison_result.json" << std::endl;
+        // Асинхронная обработка для каждой архитектуры
+        std::vector<std::future<json>> futures;
+        for (const auto& arch : architectures) {
+            futures.push_back(std::async(std::launch::async, process_comparison, std::ref(p10_data), std::ref(sisyphus_data), arch));
+        }
+
+        // Объединение результатов
+        json final_result = json::array();
+        for (auto& future : futures) {
+            final_result.push_back(future.get());
+        }
+
+        // Сохранение итогового результата
+        std::ofstream final_file("final_comparison_result.json");
+        final_file << std::setw(4) << final_result << std::endl;
+        std::cout << "Final comparison result saved to final_comparison_result.json" << std::endl;
 
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;

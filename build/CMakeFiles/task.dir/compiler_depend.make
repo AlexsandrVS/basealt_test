@@ -78,6 +78,7 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
   /usr/include/bits/wordsize.h \
   /usr/include/c++/13/algorithm \
   /usr/include/c++/13/array \
+  /usr/include/c++/13/atomic \
   /usr/include/c++/13/backward/auto_ptr.h \
   /usr/include/c++/13/backward/binders.h \
   /usr/include/c++/13/bit \
@@ -87,6 +88,7 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
   /usr/include/c++/13/bits/allocated_ptr.h \
   /usr/include/c++/13/bits/allocator.h \
   /usr/include/c++/13/bits/atomic_base.h \
+  /usr/include/c++/13/bits/atomic_futex.h \
   /usr/include/c++/13/bits/atomic_lockfree_defines.h \
   /usr/include/c++/13/bits/basic_ios.h \
   /usr/include/c++/13/bits/basic_ios.tcc \
@@ -94,6 +96,7 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
   /usr/include/c++/13/bits/basic_string.tcc \
   /usr/include/c++/13/bits/char_traits.h \
   /usr/include/c++/13/bits/charconv.h \
+  /usr/include/c++/13/bits/chrono.h \
   /usr/include/c++/13/bits/codecvt.h \
   /usr/include/c++/13/bits/concept_check.h \
   /usr/include/c++/13/bits/cpp_type_traits.h \
@@ -133,6 +136,7 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
   /usr/include/c++/13/bits/new_allocator.h \
   /usr/include/c++/13/bits/ostream.tcc \
   /usr/include/c++/13/bits/ostream_insert.h \
+  /usr/include/c++/13/bits/parse_numbers.h \
   /usr/include/c++/13/bits/postypes.h \
   /usr/include/c++/13/bits/predefined_ops.h \
   /usr/include/c++/13/bits/ptr_traits.h \
@@ -145,6 +149,8 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
   /usr/include/c++/13/bits/slice_array.h \
   /usr/include/c++/13/bits/std_abs.h \
   /usr/include/c++/13/bits/std_function.h \
+  /usr/include/c++/13/bits/std_mutex.h \
+  /usr/include/c++/13/bits/std_thread.h \
   /usr/include/c++/13/bits/stl_algo.h \
   /usr/include/c++/13/bits/stl_algobase.h \
   /usr/include/c++/13/bits/stl_bvector.h \
@@ -156,10 +162,12 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
   /usr/include/c++/13/bits/stl_iterator_base_types.h \
   /usr/include/c++/13/bits/stl_map.h \
   /usr/include/c++/13/bits/stl_multimap.h \
+  /usr/include/c++/13/bits/stl_multiset.h \
   /usr/include/c++/13/bits/stl_numeric.h \
   /usr/include/c++/13/bits/stl_pair.h \
   /usr/include/c++/13/bits/stl_raw_storage_iter.h \
   /usr/include/c++/13/bits/stl_relops.h \
+  /usr/include/c++/13/bits/stl_set.h \
   /usr/include/c++/13/bits/stl_tempbuf.h \
   /usr/include/c++/13/bits/stl_tree.h \
   /usr/include/c++/13/bits/stl_uninitialized.h \
@@ -169,6 +177,7 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
   /usr/include/c++/13/bits/streambuf_iterator.h \
   /usr/include/c++/13/bits/stringfwd.h \
   /usr/include/c++/13/bits/uniform_int_dist.h \
+  /usr/include/c++/13/bits/unique_lock.h \
   /usr/include/c++/13/bits/unique_ptr.h \
   /usr/include/c++/13/bits/unordered_map.h \
   /usr/include/c++/13/bits/uses_allocator.h \
@@ -184,6 +193,7 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
   /usr/include/c++/13/clocale \
   /usr/include/c++/13/cmath \
   /usr/include/c++/13/compare \
+  /usr/include/c++/13/condition_variable \
   /usr/include/c++/13/cstddef \
   /usr/include/c++/13/cstdint \
   /usr/include/c++/13/cstdio \
@@ -205,6 +215,7 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
   /usr/include/c++/13/forward_list \
   /usr/include/c++/13/fstream \
   /usr/include/c++/13/functional \
+  /usr/include/c++/13/future \
   /usr/include/c++/13/initializer_list \
   /usr/include/c++/13/iomanip \
   /usr/include/c++/13/ios \
@@ -216,9 +227,12 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
   /usr/include/c++/13/locale \
   /usr/include/c++/13/map \
   /usr/include/c++/13/memory \
+  /usr/include/c++/13/mutex \
   /usr/include/c++/13/new \
   /usr/include/c++/13/numeric \
   /usr/include/c++/13/ostream \
+  /usr/include/c++/13/ratio \
+  /usr/include/c++/13/set \
   /usr/include/c++/13/stdexcept \
   /usr/include/c++/13/streambuf \
   /usr/include/c++/13/string \
@@ -353,8 +367,6 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
 
 /usr/include/nlohmann/detail/output/binary_writer.hpp:
 
-/usr/include/nlohmann/detail/meta/void_t.hpp:
-
 /usr/include/nlohmann/detail/meta/type_traits.hpp:
 
 /usr/include/nlohmann/detail/meta/std_fs.hpp:
@@ -395,7 +407,25 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
 
 /usr/include/nlohmann/byte_container_with_subtype.hpp:
 
-/usr/include/c++/13/bits/memoryfwd.h:
+/usr/include/math.h:
+
+/usr/include/locale.h:
+
+/usr/include/gnu/stubs.h:
+
+/usr/include/gnu/stubs-64.h:
+
+/usr/include/features-time64.h:
+
+/usr/include/errno.h:
+
+/usr/include/stdint.h:
+
+/usr/include/endian.h:
+
+/usr/include/ctype.h:
+
+/usr/include/c++/13/x86_64-redhat-linux/bits/os_defines.h:
 
 /usr/include/c++/13/bits/locale_facets.h:
 
@@ -406,8 +436,6 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
 /usr/include/c++/13/bits/indirect_array.h:
 
 /usr/include/c++/13/bits/valarray_array.tcc:
-
-/usr/include/errno.h:
 
 /usr/include/nlohmann/detail/meta/call_std/end.hpp:
 
@@ -427,17 +455,11 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
 
 /usr/include/c++/13/bits/stl_multimap.h:
 
-/usr/include/c++/13/bits/localefwd.h:
-
-/usr/include/math.h:
-
 /usr/include/c++/13/bits/hashtable_policy.h:
 
 /usr/include/c++/13/bits/exception.h:
 
 /usr/include/c++/13/bits/cxxabi_init_exception.h:
-
-/usr/include/bits/flt-eval-method.h:
 
 /usr/include/c++/13/bits/basic_ios.tcc:
 
@@ -452,6 +474,8 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
 /usr/include/c++/13/bits/cxxabi_forced.h:
 
 /usr/include/bits/types/mbstate_t.h:
+
+/usr/include/c++/13/bits/atomic_futex.h:
 
 /usr/include/c++/13/bits/concept_check.h:
 
@@ -483,6 +507,8 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
 
 /usr/include/bits/types/wint_t.h:
 
+/usr/include/c++/13/ratio:
+
 /usr/include/nlohmann/detail/json_ref.hpp:
 
 /usr/include/c++/13/bits/charconv.h:
@@ -513,8 +539,6 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
 
 /usr/include/bits/waitflags.h:
 
-/usr/include/ctype.h:
-
 /usr/include/c++/13/bits/invoke.h:
 
 /usr/include/bits/types/struct_sched_param.h:
@@ -523,7 +547,9 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
 
 /usr/include/c++/13/bits/basic_string.h:
 
-/usr/include/gnu/stubs.h:
+/usr/include/nlohmann/detail/meta/void_t.hpp:
+
+/usr/include/c++/13/atomic:
 
 /usr/include/bits/types/timer_t.h:
 
@@ -531,15 +557,15 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
 
 /usr/include/c++/13/bits/erase_if.h:
 
-/usr/include/bits/pthreadtypes-arch.h:
-
-/usr/include/c++/13/bits/shared_ptr_atomic.h:
-
 /usr/include/bits/iscanonical.h:
 
 /usr/include/nlohmann/detail/input/lexer.hpp:
 
 /usr/include/c++/13/cstring:
+
+/usr/include/bits/flt-eval-method.h:
+
+/usr/include/c++/13/bits/chrono.h:
 
 /usr/include/bits/types/struct_FILE.h:
 
@@ -562,6 +588,8 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
 /usr/include/bits/long-double.h:
 
 /usr/include/c++/13/bits/predefined_ops.h:
+
+/usr/include/c++/13/condition_variable:
 
 /usr/include/c++/13/iosfwd:
 
@@ -642,6 +670,10 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
 /usr/include/bits/time64.h:
 
 /usr/include/bits/stdlib-float.h:
+
+/usr/include/c++/13/bits/unique_lock.h:
+
+/usr/include/c++/13/mutex:
 
 /usr/include/c++/13/cwctype:
 
@@ -729,21 +761,25 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
 
 /usr/include/bits/types/clockid_t.h:
 
-/usr/include/features.h:
-
-/usr/include/bits/types/__FILE.h:
-
-/usr/include/bits/sched.h:
-
 /usr/include/bits/types/cookie_io_functions_t.h:
 
+/usr/include/c++/13/bits/localefwd.h:
+
+/usr/include/c++/13/bits/memoryfwd.h:
+
 /usr/include/c++/13/bits/ostream.tcc:
+
+/usr/include/c++/13/bits/stl_set.h:
 
 /usr/include/c++/13/bits/ostream_insert.h:
 
 /usr/include/c++/13/bits/postypes.h:
 
+/usr/include/c++/13/bits/parse_numbers.h:
+
 /usr/include/c++/13/bits/std_abs.h:
+
+/usr/include/c++/13/bits/stl_multiset.h:
 
 /usr/include/c++/13/bits/uses_allocator.h:
 
@@ -773,6 +809,10 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
 
 /usr/include/c++/13/cstdlib:
 
+/usr/include/c++/13/bits/std_mutex.h:
+
+/usr/include/c++/13/bits/stl_construct.h:
+
 /usr/include/bits/struct_rwlock.h:
 
 /usr/include/c++/13/bits/stl_algo.h:
@@ -787,8 +827,6 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
 
 /usr/include/c++/13/x86_64-redhat-linux/bits/c++io.h:
 
-/usr/include/c++/13/bits/stl_construct.h:
-
 /usr/include/bits/libm-simd-decl-stubs.h:
 
 /usr/include/c++/13/bits/stl_function.h:
@@ -802,8 +840,6 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
 /usr/include/bits/types/locale_t.h:
 
 /usr/include/c++/13/bits/stl_heap.h:
-
-/usr/include/c++/13/x86_64-redhat-linux/bits/os_defines.h:
 
 /usr/include/stdio.h:
 
@@ -831,9 +867,9 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
 
 /usr/include/c++/13/bits/stl_tree.h:
 
-/usr/include/stdint.h:
+/usr/include/c++/13/x86_64-redhat-linux/bits/time_members.h:
 
-/usr/include/endian.h:
+/usr/include/c++/13/bits/streambuf.tcc:
 
 /usr/include/c++/13/bits/stringfwd.h:
 
@@ -845,9 +881,9 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
 
 /usr/include/c++/13/bits/valarray_before.h:
 
-/usr/include/c++/13/streambuf:
-
 /usr/include/nlohmann/adl_serializer.hpp:
+
+/usr/include/c++/13/streambuf:
 
 /usr/include/bits/types/__fpos_t.h:
 
@@ -865,13 +901,13 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
 
 /usr/include/c++/13/cwchar:
 
-/usr/include/gnu/stubs-64.h:
+/usr/include/linux/errno.h:
+
+/usr/include/c++/13/debug/debug.h:
 
 /usr/include/nlohmann/json.hpp:
 
 /usr/include/c++/13/ext/aligned_buffer.h:
-
-/usr/include/locale.h:
 
 /usr/include/c++/13/ext/alloc_traits.h:
 
@@ -890,6 +926,16 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
 /usr/include/c++/13/x86_64-redhat-linux/bits/c++allocator.h:
 
 /usr/include/c++/13/forward_list:
+
+/usr/include/features.h:
+
+/usr/include/bits/types/__FILE.h:
+
+/usr/include/bits/sched.h:
+
+/usr/include/c++/13/future:
+
+/usr/include/c++/13/bits/std_thread.h:
 
 /usr/include/c++/13/initializer_list:
 
@@ -910,6 +956,12 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
 /usr/include/c++/13/memory:
 
 /usr/include/c++/13/numeric:
+
+/usr/include/bits/pthreadtypes-arch.h:
+
+/usr/include/c++/13/bits/shared_ptr_atomic.h:
+
+/usr/include/c++/13/set:
 
 /usr/include/bits/mathcalls-narrow.h:
 
@@ -946,13 +998,3 @@ CMakeFiles/task.dir/task.cpp.o: /home/alex/Documents/code/basealt_test/task.cpp 
 /usr/include/c++/13/type_traits:
 
 /usr/include/c++/13/x86_64-redhat-linux/bits/gthr-default.h:
-
-/usr/include/c++/13/bits/streambuf.tcc:
-
-/usr/include/c++/13/x86_64-redhat-linux/bits/time_members.h:
-
-/usr/include/features-time64.h:
-
-/usr/include/c++/13/debug/debug.h:
-
-/usr/include/linux/errno.h:
