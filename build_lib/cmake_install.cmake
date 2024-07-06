@@ -49,7 +49,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libfetch_and_save.so"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/alex/Documents/code/basealt_test/build/libfetch_and_save.so")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/alex/Documents/code/basealt_test/build_lib/libfetch_and_save.so")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libfetch_and_save.so" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libfetch_and_save.so")
     if(CMAKE_INSTALL_DO_STRIP)
@@ -73,5 +73,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/alex/Documents/code/basealt_test/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/alex/Documents/code/basealt_test/build_lib/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

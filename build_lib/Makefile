@@ -60,7 +60,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/alex/Documents/code/basealt_test/shared_lib
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/alex/Documents/code/basealt_test/build
+CMAKE_BINARY_DIR = /home/alex/Documents/code/basealt_test/build_lib
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,9 +132,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/alex/Documents/code/basealt_test/build/CMakeFiles /home/alex/Documents/code/basealt_test/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/alex/Documents/code/basealt_test/build_lib/CMakeFiles /home/alex/Documents/code/basealt_test/build_lib//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/alex/Documents/code/basealt_test/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/alex/Documents/code/basealt_test/build_lib/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
