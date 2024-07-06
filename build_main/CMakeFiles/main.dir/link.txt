@@ -1,0 +1,1 @@
+/usr/lib64/ccache/c++ -rdynamic CMakeFiles/main.dir/main.cpp.o -o main   -L/home/alex/Documents/code/basealt_test/main/../build  -Wl,-rpath,/home/alex/Documents/code/basealt_test/main/../build -lfetch_and_save -lcurl -lfetch_and_save -lcurl 
