@@ -3,6 +3,7 @@
 #include <fstream>
 #include <curl/curl.h>
 #include <vector>
+#include <future>
 
 // Callback функция для записи данных в std::string
 size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* s) {
@@ -51,7 +52,14 @@ void fetchAndSave(const std::string& branch) {
 }
 
 void fetchAndSaveMultiple(const std::vector<std::string>& branches) {
+    std::vector<std::future<void>> futures;
+    
     for (const std::string& branch : branches) {
-        fetchAndSave(branch);
+        futures.push_back(std::async(std::launch::async, fetchAndSave, branch));
+    }
+
+    // Wait for all async tasks to complete
+    for (auto& future : futures) {
+        future.get();
     }
 }

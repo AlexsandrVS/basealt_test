@@ -1,6 +1,8 @@
 #? chmod +x build_and_run.sh 
 #! ./build_and_run.sh
 
+# ./download_curl_lib.sh # download curl lib
+
 echo "Building shared library..."
 cd build_lib
 cmake ../shared_lib
@@ -29,5 +31,5 @@ echo "Running main application..."
 ./build_main/main
 
 echo -e "\n**************"
-echo      "* Completed! *"
-echo      "**************"
+echo "* Completed! *"
+echo  -e "**************\n"
