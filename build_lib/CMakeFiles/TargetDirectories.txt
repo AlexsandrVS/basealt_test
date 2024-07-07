@@ -1,7 +1,0 @@
-/home/alex/Documents/code/basealt_test/build_lib/CMakeFiles/fetch_and_save.dir
-/home/alex/Documents/code/basealt_test/build_lib/CMakeFiles/edit_cache.dir
-/home/alex/Documents/code/basealt_test/build_lib/CMakeFiles/rebuild_cache.dir
-/home/alex/Documents/code/basealt_test/build_lib/CMakeFiles/list_install_components.dir
-/home/alex/Documents/code/basealt_test/build_lib/CMakeFiles/install.dir
-/home/alex/Documents/code/basealt_test/build_lib/CMakeFiles/install/local.dir
-/home/alex/Documents/code/basealt_test/build_lib/CMakeFiles/install/strip.dir

@@ -1,16 +1,13 @@
-# Укажите минимально необходимую версию CMake
-cmake_minimum_required(VERSION 3.0)
-project(fetch_and_save)
+cmake_minimum_required(VERSION 3.5)
+project(fetch_and_save_lib)
 
-# Укажите исходные файлы для вашей библиотеки
-add_library(fetch_and_save SHARED fetch_and_save.cpp)
+# Определяем источник файлов
+set(SOURCES
+    fetch_and_save.cpp
+)
 
-# Укажите директорию, в которой находятся заголовочные файлы вашей библиотеки
-target_include_directories(fetch_and_save PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+# Генерируем динамическую библиотеку
+add_library(fetch_and_save SHARED ${SOURCES})
 
-# Укажите необходимые библиотеки, если они есть
-target_link_libraries(fetch_and_save)
-
-# Установка библиотеки в директорию установки
-install(TARGETS fetch_and_save LIBRARY DESTINATION lib)
-install(FILES fetch_and_save.h DESTINATION include)
+# Добавляем флаг -fPIC для всех целей
+set_property(TARGET fetch_and_save PROPERTY POSITION_INDEPENDENT_CODE ON)

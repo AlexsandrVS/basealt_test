@@ -1,1 +1,0 @@
-/usr/lib64/ccache/c++ -rdynamic CMakeFiles/task.dir/task.cpp.o -o task 

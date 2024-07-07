@@ -5,6 +5,7 @@
 #include <vector>
 #include <future>
 
+// Callback function to write data into std::string
 // Callback функция для записи данных в std::string
 size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* s) {
     size_t newLength = size * nmemb;
@@ -12,11 +13,14 @@ size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* s) 
         s->append((char*)contents, newLength);
     } catch (std::bad_alloc &e) {
         // Handle memory problem
+        // Обработка проблемы с памятью
         return 0;
     }
     return newLength;
 }
 
+// Function to fetch data from URL and save as JSON file
+// Функция для загрузки данных по URL и сохранения в файле JSON
 void fetchAndSave(const std::string& branch) {
     CURL* curl;
     CURLcode res;
@@ -51,6 +55,8 @@ void fetchAndSave(const std::string& branch) {
     curl_global_cleanup();
 }
 
+// Function to fetch and save multiple branches asynchronously
+// Функция для асинхронной загрузки и сохранения нескольких веток
 void fetchAndSaveMultiple(const std::vector<std::string>& branches) {
     std::vector<std::future<void>> futures;
     
@@ -59,6 +65,7 @@ void fetchAndSaveMultiple(const std::vector<std::string>& branches) {
     }
 
     // Wait for all async tasks to complete
+    // Ожидание завершения всех асинхронных задач
     for (auto& future : futures) {
         future.get();
     }
