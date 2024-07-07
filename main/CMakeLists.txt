@@ -5,9 +5,8 @@ project(MainApp)
 add_executable(main main.cpp)
 
 # Укажите путь к заголовочным файлам вашей разделяемой библиотеки
-target_include_directories(main PRIVATE ../shared_lib)
+target_include_directories(main PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../shared_lib)
 
 # Укажите путь к библиотеке и имя библиотеки, которую нужно подключить
-target_link_directories(main PRIVATE ../build_lib)
-target_link_libraries(main fetch_and_save curl)
-target_link_libraries(main fetch_and_save)
+target_link_libraries(main PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../build_lib/libfetch_and_save.so)
+target_link_libraries(main PRIVATE curl)
