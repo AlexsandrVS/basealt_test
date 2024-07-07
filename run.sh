@@ -1,101 +1,56 @@
 #!/bin/bash
 
-#./task/download_curl_nlohmann_lib.sh
+# Функция для запроса подтверждения от пользователя
+# Function to ask for user confirmation
+confirm() {
+    while true; do
+        read -p "$1 [y/n]: " yn
+        case $yn in
+            # Запустить скрипт
+            # Run the script
+            [Yy]*) ./download_curl_nlohmann_lib.sh; break ;;
+            # Пропустить выполнение
+            # Skip the execution
+            [Nn]*) echo "Пропуск загрузки библиотек. / Skipping library download."; break ;; 
+            # Неверный ввод
+            # Invalid input
+            *) echo "Пожалуйста, ответьте y или n. / Please answer y or n." ;; 
+        esac
+    done
+}
 
-# Check if the build directory exists
-if [ ! -d "build" ]; then
-  echo "Creating build directory..."
-  mkdir build
-else
-  echo "The build directory already exists."
-fi
+# Запрос подтверждения для запуска скрипта
+# Prompt user for confirmation to run the script
+confirm "Скачать и установить библиотеки? / Download and install libraries?"
 
-# Move shared_lib into the build directory
-if [ -d "shared_lib" ]; then
-  echo "Moving shared_lib directory to build..."
-  mv shared_lib build/
-else
-  echo "shared_lib directory does not exist. Exiting..."
-fi
-
-# Move shared_lib into the build directory
-if [ -d "task" ]; then
-  echo "Moving task directory to build..."
-  mv task build/
-else
-  echo "task directory does not exist. Exiting..."
-fi
-
-# Change to the build directory
-cd build
-
-# Verify the presence of shared_lib and main directories in build directory
-if [ -d "shared_lib" ]; then
-  echo "shared_lib directory is in the build directory."
-else
-  echo "shared_lib directory was not successfully moved. Exiting..."
-  exit 1
-fi
-
-# Verify the presence of shared_lib and main directories in build directory
-if [ -d "task" ]; then
-  echo "task directory is in the build directory."
-else
-  echo "task directory was not successfully moved. Exiting..."
-  exit 1
-fi
-
-echo "All necessary directories are in place and files have been moved."
-
-# Check if the build directory exists
-if [ ! -d "build_lab" ]; then
-  echo "Creating build_lab directory..."
-  mkdir build_lab
-else
-  echo "The build_lab directory already exists."
-fi
-
-# Change to build_lib and build the shared_lib project
-cd build_lib
-echo "Building shared_lib project..."
+# Переход в каталог task и сборка проекта shared_lib
+# Change to task directory and build the shared_lib project
+cd task
+echo "Сборка проекта shared_lib... / Building shared_lib project..."
 cmake ../shared_lib
 make
 
-# Change back to build directory
-cd ..
-
-echo "All necessary directories are in place and projects have been built."
-
-# Перейти в директорию task
-cd task
-
-if [ ! -d "build_task" ]; then
-  echo "Creating build_task directory..."
-  mkdir build_task
-else
-  echo "The build_task directory already exists."
-fi
-
-# Перейти в директорию build_task
-cd build_task
-
+# Создание директории Answer, если она не существует
+# Create Answer directory if it doesn't exist
 if [ ! -d "Answer" ]; then
-  echo "Creating Answer directory..."
+  echo "Создание директории Answer... / Creating Answer directory..."
   mkdir Answer
 else
-  echo "The Answer directory already exists."
+  echo "Директория Answer уже существует. / The Answer directory already exists."
 fi
 
-# Запуск cmake для сборки проекта из текущей директории (task)
-cmake ..
+# Компиляция файла task.cpp и линковка с библиотекой fetch_and_save и curl
+# Compile task.cpp and link with fetch_and_save and curl libraries
+g++ -std=c++11 task.cpp -o task -L./ -Wl,-rpath=./ -lfetch_and_save -lcurl
 
-# Запуск make для сборки проекта
-make
-
-echo "Start task"
+# Запуск программы task
+# Run the task program
+echo "Запуск task / Start task"
 ./task
-echo "Finish task"
+echo "Завершение task / Finish task"
 
+# Завершение скрипта
+# Script completion message
 echo -e "\n**************"
-echo "* Completed! *"
-echo -e "************** \n" 
+echo "* Завершено! / Completed! *"
+echo -e "************** \n"
