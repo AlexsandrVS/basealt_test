@@ -61,6 +61,12 @@ fi
 
 echo "All necessary directories are in place and files have been moved."
 
+# Change to build_lib and build the shared_lib project
+cd build_lib
+echo "Building shared_lib project..."
+cmake ../shared_lib
+make
+
 # Change to build_main and build the main project
 cd build_main
 echo "Building main project..."
@@ -69,12 +75,6 @@ make
 
 # Change back to build directory
 cd ..
-
-# Change to build_lib and build the shared_lib project
-cd build_lib
-echo "Building shared_lib project..."
-cmake ../shared_lib
-make
 
 echo "All necessary directories are in place and projects have been built."
 
