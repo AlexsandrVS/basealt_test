@@ -6,8 +6,10 @@
 #include <future>
 #include <set>
 #include <unordered_map>
+#include <filesystem> // Для создания каталога
 
 using json = nlohmann::json;
+namespace fs = std::filesystem; // Пространство имен для работы с файловой системой
 
 // Структура для представления пакета
 struct Package {
@@ -154,6 +156,9 @@ json process_comparison(const json& branch1_data, const json& branch2_data, cons
 
 int main() {
     try {
+        // Создание каталога Answer
+        fs::create_directory("Answer");
+
         // Загрузка данных
         json p10_data = load_json("p10.json");
         json sisyphus_data = load_json("sisyphus.json");
@@ -180,16 +185,16 @@ int main() {
         }
 
         // Сохранение итогового результата в файл
-        std::ofstream final_file("final_comparison_result.json");
+        std::ofstream final_file("Answer/final_comparison_result.json");
         final_file << std::setw(4) << final_result << std::endl;
-        std::cout << "Final comparison result saved to final_comparison_result.json" << std::endl;
+        std::cout << "Final comparison result saved to Answer/final_comparison_result.json" << std::endl;
 
         // Сохранение отдельных файлов
         for (const auto& arch : architectures) {
             json result = compare_packages(p10_data, sisyphus_data, arch);
-            std::ofstream file(arch + "_comparison_result.json");
+            std::ofstream file("Answer/" + arch + "_comparison_result.json");
             file << std::setw(4) << result << std::endl;
-            std::cout << "Comparison result for arch " << arch << " saved to " << arch << "_comparison_result.json" << std::endl;
+            std::cout << "Comparison result for arch " << arch << " saved to Answer/" << arch << "_comparison_result.json" << std::endl;
         }
 
     } catch (const std::exception& e) {
