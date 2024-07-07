@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.0)
 project(MainApp)
 
-# Укажите путь к заголовочным файлам вашей разделяемой библиотеки
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../shared_lib)
-
 # Добавьте исполняемый файл main.cpp
 add_executable(main main.cpp)
+
+# Укажите путь к заголовочным файлам вашей разделяемой библиотеки
+target_include_directories(main PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../shared_lib)
 
 # Убедитесь, что библиотека собрана перед сборкой main
 add_library(fetch_and_save SHARED IMPORTED)
