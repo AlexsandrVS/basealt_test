@@ -6,6 +6,8 @@
 #include <future>
 #include <set>
 #include <unordered_map>
+#include <dlfcn.h> // Для работы с динамическими библиотеками
+#include "../build/shared_lib/fetch_and_save.h"
 
 using json = nlohmann::json;
 
@@ -154,43 +156,63 @@ json process_comparison(const json& branch1_data, const json& branch2_data, cons
 
 int main() {
     try {
-        // Множество для хранения уже выбранных файлов
-        std::set<std::string> selected_files;
-        std::vector<std::string> file_choices = {"p9.json", "p10.json", "p11.json", "sisyphus.json"};
-        json branch1_data, branch2_data;
+        // Множество для хранения уже выбранных веток
+        std::set<std::string> selected_branches;
+        std::vector<json> branch_data;
 
-        // Бесконечный цикл для выбора файлов
-        while (selected_files.size() < 2) {
+        std::vector<std::string> branches = {"p9", "p10", "p11", "sisyphus"};
+        std::vector<std::string> branch_choices;
+
+        std::cout << "Select \n";
+
+        while (selected_branches.size() < 2) {
             std::string choice;
-            std::cout << "Выберите файл (p9.json, p10.json, p11.json, sisyphus.json): ";
+            std::cout << "Выберите ветку (1. p9, 2. p10, 3. p11, 4. sisyphus): ";
             std::cin >> choice;
 
-            if (selected_files.find(choice) == selected_files.end() && 
-                std::find(file_choices.begin(), file_choices.end(), choice) != file_choices.end()) {
-                selected_files.insert(choice);
-                if (selected_files.size() == 1) {
-                    branch1_data = load_json(choice);
+            int index = std::stoi(choice) - 1; // Индекс ветки в векторе branches
+
+            // Проверяем корректность введенного номера
+            if (index >= 0 && index < branches.size()) {
+                std::string branch_name = branches[index];
+
+                // Проверяем, что ветка еще не была выбрана
+                if (selected_branches.count(branch_name) == 0) {
+                    selected_branches.insert(branch_name);
+                    branch_choices.push_back(branch_name);
                 } else {
-                    branch2_data = load_json(choice);
+                    std::cout << "Эта ветка уже выбрана. Выберите другую ветку.\n";
                 }
             } else {
-                std::cout << "Неверный выбор или файл уже выбран. Попробуйте снова." << std::endl;
+                std::cout << "Некорректный выбор. Пожалуйста, выберите номер ветки от 1 до 4.\n";
             }
+        }
+
+        std::cout << "Выбранные ветки:\n";
+        for (const auto& branch : branch_choices) {
+            std::cout << branch << "\n";
+        }
+
+        // Загрузка выбранных веток через функцию из динамической библиотеки
+        fetchAndSaveMultiple(branch_choices);
+
+        // Загрузка данных из выбранных веток в вектор branch_data
+        for (const auto& branch : branch_choices) {
+            branch_data.push_back(load_json(branch + ".json"));
         }
 
         // Получение списка уникальных архитектур
         std::set<std::string> architectures;
-        for (const auto& pkg : branch1_data["packages"]) {
-            architectures.insert(pkg["arch"]);
-        }
-        for (const auto& pkg : branch2_data["packages"]) {
-            architectures.insert(pkg["arch"]);
+        for (const auto& branch : branch_data) {
+            for (const auto& pkg : branch["packages"]) {
+                architectures.insert(pkg["arch"]);
+            }
         }
 
         // Асинхронная обработка для каждой архитектуры
         std::vector<std::future<json>> futures;
         for (const auto& arch : architectures) {
-            futures.push_back(std::async(std::launch::async, process_comparison, std::ref(branch1_data), std::ref(branch2_data), arch));
+            futures.push_back(std::async(std::launch::async, process_comparison, std::ref(branch_data[0]), std::ref(branch_data[1]), arch));
         }
 
         // Объединение результатов
@@ -206,7 +228,7 @@ int main() {
 
         // Сохранение отдельных файлов
         for (const auto& arch : architectures) {
-            json result = compare_packages(branch1_data, branch2_data, arch);
+            json result = compare_packages(branch_data[0], branch_data[1], arch);
             std::ofstream file("Answer/" + arch + "_comparison_result.json");
             file << std::setw(4) << result << std::endl;
             std::cout << "Comparison result for arch " << arch << " saved to Answer/" << arch << "_comparison_result.json" << std::endl;
