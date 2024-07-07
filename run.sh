@@ -67,14 +67,14 @@ echo "Building shared_lib project..."
 cmake ../shared_lib
 make
 
+# Change back to build directory
+cd ..
+
 # Change to build_main and build the main project
 cd build_main
 echo "Building main project..."
 cmake ../main
 make
-
-# Change back to build directory
-cd ..
 
 echo "All necessary directories are in place and projects have been built."
 
