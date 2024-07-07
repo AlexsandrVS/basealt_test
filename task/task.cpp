@@ -6,10 +6,8 @@
 #include <future>
 #include <set>
 #include <unordered_map>
-#include <filesystem> // Для создания каталога
 
 using json = nlohmann::json;
-namespace fs = std::filesystem; // Пространство имен для работы с файловой системой
 
 // Структура для представления пакета
 struct Package {
@@ -156,26 +154,43 @@ json process_comparison(const json& branch1_data, const json& branch2_data, cons
 
 int main() {
     try {
-        // Создание каталога Answer
-        fs::create_directory("Answer");
+        // Множество для хранения уже выбранных файлов
+        std::set<std::string> selected_files;
+        std::vector<std::string> file_choices = {"p9.json", "p10.json", "p11.json", "sisyphus.json"};
+        json branch1_data, branch2_data;
 
-        // Загрузка данных
-        json p10_data = load_json("p10.json");
-        json sisyphus_data = load_json("sisyphus.json");
+        // Бесконечный цикл для выбора файлов
+        while (selected_files.size() < 2) {
+            std::string choice;
+            std::cout << "Выберите файл (p9.json, p10.json, p11.json, sisyphus.json): ";
+            std::cin >> choice;
+
+            if (selected_files.find(choice) == selected_files.end() && 
+                std::find(file_choices.begin(), file_choices.end(), choice) != file_choices.end()) {
+                selected_files.insert(choice);
+                if (selected_files.size() == 1) {
+                    branch1_data = load_json(choice);
+                } else {
+                    branch2_data = load_json(choice);
+                }
+            } else {
+                std::cout << "Неверный выбор или файл уже выбран. Попробуйте снова." << std::endl;
+            }
+        }
 
         // Получение списка уникальных архитектур
         std::set<std::string> architectures;
-        for (const auto& pkg : p10_data["packages"]) {
+        for (const auto& pkg : branch1_data["packages"]) {
             architectures.insert(pkg["arch"]);
         }
-        for (const auto& pkg : sisyphus_data["packages"]) {
+        for (const auto& pkg : branch2_data["packages"]) {
             architectures.insert(pkg["arch"]);
         }
 
         // Асинхронная обработка для каждой архитектуры
         std::vector<std::future<json>> futures;
         for (const auto& arch : architectures) {
-            futures.push_back(std::async(std::launch::async, process_comparison, std::ref(p10_data), std::ref(sisyphus_data), arch));
+            futures.push_back(std::async(std::launch::async, process_comparison, std::ref(branch1_data), std::ref(branch2_data), arch));
         }
 
         // Объединение результатов
@@ -191,7 +206,7 @@ int main() {
 
         // Сохранение отдельных файлов
         for (const auto& arch : architectures) {
-            json result = compare_packages(p10_data, sisyphus_data, arch);
+            json result = compare_packages(branch1_data, branch2_data, arch);
             std::ofstream file("Answer/" + arch + "_comparison_result.json");
             file << std::setw(4) << result << std::endl;
             std::cout << "Comparison result for arch " << arch << " saved to Answer/" << arch << "_comparison_result.json" << std::endl;

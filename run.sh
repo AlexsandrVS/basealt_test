@@ -94,6 +94,13 @@ fi
 # Перейти в директорию build_task
 cd build_task
 
+if [ ! -d "Answer" ]; then
+  echo "Creating Answer directory..."
+  mkdir Answer
+else
+  echo "The Answer directory already exists."
+fi
+
 # Запуск cmake для сборки проекта из текущей директории (task)
 cmake ..
 
