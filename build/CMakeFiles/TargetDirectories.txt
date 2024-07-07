@@ -1,3 +1,0 @@
-/home/alex/Documents/code/basealt_test/build/CMakeFiles/task.dir
-/home/alex/Documents/code/basealt_test/build/CMakeFiles/edit_cache.dir
-/home/alex/Documents/code/basealt_test/build/CMakeFiles/rebuild_cache.dir
