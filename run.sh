@@ -52,5 +52,5 @@ echo "Завершение task / Finish task"
 # Завершение скрипта
 # Script completion message
 echo -e "\n**************"
-echo "* Завершено! / Completed! *"
-echo -e "************** \n"
+echo      "* Completed! *"
+echo -e   "************** \n"
